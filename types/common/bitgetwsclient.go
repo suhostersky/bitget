@@ -2,7 +2,6 @@ package common
 
 import (
 	"fmt"
-	"strconv"
 	"sync"
 	"time"
 
@@ -179,10 +178,6 @@ func (p *BitgetBaseWsClient) ReadLoop() {
 
 		v, e := jsonMap["code"]
 		if !e {
-			p.ErrorListener(message)
-			continue
-		}
-		if code, err := strconv.Atoi(v.(string)); err != nil || code != 0 {
 			p.ErrorListener(message)
 			continue
 		}
