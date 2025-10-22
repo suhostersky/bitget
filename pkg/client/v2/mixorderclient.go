@@ -48,6 +48,15 @@ func (p *MixOrderClient) CancelOrder(params map[string]string) (string, error) {
 	return resp, err
 }
 
+func (p *MixOrderClient) CancelAllOrders(params map[string]string) (string, error) {
+	postBody, jsonErr := types.ToJson(params)
+	if jsonErr != nil {
+		return "", jsonErr
+	}
+	resp, err := p.BitgetRestClient.DoPost("/api/v2/mix/order/cancel-all-orders", postBody)
+	return resp, err
+}
+
 func (p *MixOrderClient) BatchCancelOrders(params map[string]string) (string, error) {
 	postBody, jsonErr := types.ToJson(params)
 	if jsonErr != nil {
